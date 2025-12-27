@@ -3,19 +3,20 @@ const bcrypt = require('bcryptjs');
 const User = require('../model/userModel');
 const Holiday = require('../model/holiday');
 
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../../.env') });
 
 const connectToDB = async () => {
-    const mongoUri = process.env.MONGO_URI;
-    try {
-      await mongoose.connect(mongoUri);
-      console.log('✅ Connected to local MongoDB successfully');
-    } catch (localError) {
-      console.error('❌ Local MongoDB connection error:', localError.message);
-      console.log('💡 Ensure MongoDB is installed and running locally, or whitelist your IP in Atlas.');
-      process.exit(1);
-    }
-  };
+  const mongoUri = process.env.MONGO_URI;
+  try {
+    await mongoose.connect(mongoUri);
+    console.log('✅ Connected to local MongoDB successfully');
+  } catch (localError) {
+    console.error('❌ Local MongoDB connection error:', localError.message);
+    console.log('💡 Ensure MongoDB is installed and running locally, or whitelist your IP in Atlas.');
+    process.exit(1);
+  }
+};
 // };
 
 const createDefaultEmployee = async () => {

@@ -2,11 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
-require('dotenv').config();
+require('dotenv').config({ path: path.join(__dirname, '../.env') });
 
 const routes = require('./routes');
 const { errorHandler } = require('./middleware/errorHandler');
-const { connectToDB  } = require('./config/db');
+const { connectToDB } = require('./config/db');
 
 
 const app = express();
